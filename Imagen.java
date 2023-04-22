@@ -1,4 +1,4 @@
-public class Imagen { //esta clase anda creo
+public class Imagen {
     private boolean[] iluminada;
     private boolean tamanioajustado;
 
@@ -8,21 +8,19 @@ public class Imagen { //esta clase anda creo
     }
 
     public void iluminar(int indice) { //funcion que nos deja "iluminar" la imagen y poner que fue iluminada por uno de los threads
-        if (indice >= 0 && indice <= iluminada.length) {
+        if (indice >= 0 && indice < iluminada.length) {
             iluminada[indice] = true;
         } else {
-            //System.out.println("El índice está fuera de rango");
-            throw new IndexOutOfBoundsException("El índice está fuera de rango");
+            System.out.println("El índice está fuera de rango");
         }
     }
 
     public boolean isIluminacionMejoradaBy(int indice) { //chequea con el int si fue iluminado por el thread entre 0 y 2
-        if (indice >= 0 && indice <= iluminada.length) {
+        if (indice >= 0 && indice < iluminada.length) {
             return iluminada[indice];
         } else {
-            //System.out.println("El índice está fuera de rango");
-            //return false;
-            throw new IndexOutOfBoundsException("El índice está fuera de rango");
+            System.out.println("El índice está fuera de rango");
+            return false;///NOTA, quizas deberia retornar true
         }
     }
 
