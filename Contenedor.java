@@ -5,18 +5,14 @@ import java.util.Random;
 class Contenedor {
      private ArrayList<Imagen> imagenes;
     private int iluminacionMejorada;
-    private int redimencionadas;
+    private int redimensionadas;
 
-    public Contenedor(int capacidad){ //constructor generico
+    public Contenedor(){ //constructor generico
         imagenes =  new ArrayList<>();;
         iluminacionMejorada = 0;
-        redimencionadas = 0;
+        redimensionadas = 0;
     }
 
-    /**
-     * agrega una imagen al arreglo imagen
-     * @return true si la imagen se pudo agregar, false si el contenedor ya está lleno
-     */
      public synchronized void add(Imagen imagen) {
              imagenes.add(imagen);
              //return true;
@@ -35,9 +31,7 @@ class Contenedor {
          return imagenes.get(random.nextInt(getSize()));
      }
 
-
-
-     public int getIluminacionMejorada() {
+     public synchronized int getIluminacionMejorada() {
          int contador = 0;
          for (Imagen i: imagenes) {
              if(i.isIluminadaMejorada()){
@@ -48,19 +42,26 @@ class Contenedor {
          return iluminacionMejorada;
      }
 
-     public int getRedimencionadas() {
-         return redimencionadas;
+     public synchronized int getRedimensionadas() {
+         int contador1 = 0;
+         for (Imagen i: imagenes) {
+             if(i.isRedimensionada()){
+                 contador1++;
+             }
+         }
+         redimensionadas = contador1;
+         return redimensionadas;
      }
 
      public synchronized int getSize() {
          return imagenes.size();
      }
 
-     public void setIluminacionMejorada(int iluminacionMejorada) {
+     public void setIluminacionMejorada(int iluminacionMejorada) { //deprecado
          this.iluminacionMejorada = iluminacionMejorada;
      }
 
-     public void setRedimencionadas(int redimencionadas) {
-         this.redimencionadas = redimencionadas;
+     public void setRedimensionadas() { //deprecado
+         redimensionadas++;
      }
  }

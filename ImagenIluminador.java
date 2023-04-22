@@ -14,6 +14,7 @@ public class ImagenIluminador implements Runnable {
 
     @Override
     public void run() {
+        System.out.printf("se inicializo el iluminador: " + numerohilo + "\n");
         while (cantidadIluminadas < contenedor.getSize()) {
             // Obtener un objeto Imagen al azar del contenedor
             Imagen imagen;
@@ -24,13 +25,13 @@ public class ImagenIluminador implements Runnable {
                 //System.out.printf("Se ilumino una imagen %b \n", imagen.isIluminacionMejoradaBy(numerohilo));
             }
             try{
-                TimeUnit.MILLISECONDS.sleep(50);
+                TimeUnit.MILLISECONDS.sleep(5);
             } catch(InterruptedException e){
                 e.printStackTrace();
             }
             //System.out.printf("Se ilumino una imagen " + imagen.isIluminacionMejoradaBy(numerohilo));
         }
-        System.out.println("Se iluminaron " + cantidadIluminadas);
+        System.out.println("Se iluminaron: " + cantidadIluminadas + " imagenes, por el hilo: " + numerohilo + "\n");
     }
 
     public int getCantidadIluminadas() {

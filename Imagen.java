@@ -20,11 +20,11 @@ public class Imagen {
             return iluminada[indice];
         } else {
             System.out.println("El índice está fuera de rango");
-            return false;///NOTA, quizas deberia retornar true
+            return false; ///NOTA, quizas deberia retornar true
         }
     }
 
-    public boolean isIluminadaMejorada() { //chequea si toda la imagen fue mejorada y que el array sea "todo true"
+    public boolean isIluminadaMejorada() { //chequea si toda la imagen fue mejorada y que el array sea "all true"
         for (boolean b : iluminada) {
             if (!b) {
                 return false;

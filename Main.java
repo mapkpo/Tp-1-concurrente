@@ -1,7 +1,7 @@
 public class Main {
     public static void main(String[] args) {
 
-        Contenedor contenedor = new Contenedor(100);
+        Contenedor contenedor = new Contenedor();
 
         ImagenCargador[] imagenCargador = new ImagenCargador[3];
         Thread[] threadsCargadores = new Thread[3];
@@ -14,7 +14,7 @@ public class Main {
             System.out.printf("Contenedor %d inicializado\n", i);
         }
 
-        System.out.printf("Contenedor cargado con %d elementos\n", contenedor.getSize());
+        // System.out.printf("Contenedor cargado con %d elementos\n", contenedor.getSize());
 /*
         try{
             threadsCargadores[0].join();
@@ -40,5 +40,31 @@ public class Main {
         }
 
         System.out.printf("Se iluminaron completamente %d imagenes\n", contenedor.getIluminacionMejorada());
+
+/*
+        ImagenTamanio xd = new ImagenTamanio(contenedor,0);
+        Thread xd1 = new Thread(xd);
+        xd1.start();
+*/
+
+
+
+
+        ImagenTamanio[] redimensionadores = new ImagenTamanio[3];
+        Thread[] threadRedimensionadores = new Thread[3];
+
+        for(int i = 0; i<3; i++){
+            redimensionadores[i] = new ImagenTamanio(contenedor, i);
+            threadRedimensionadores[i] = new Thread(redimensionadores[i]);
+            threadRedimensionadores[i].start();
+        }
+
+        try{
+            threadRedimensionadores[0].join();
+            threadRedimensionadores[1].join();
+            threadRedimensionadores[2].join();
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        } 
     }
 }
