@@ -11,16 +11,16 @@ public class Main {
             threadsCargadores[i] = new Thread(imagenCargador[i]);
             threadsCargadores[i].start();
 
-            System.out.printf("Contenedor %d inicializado\n", i);
+            System.out.printf("Cargador %d inicializado\n", i);
         }
 
         // System.out.printf("Contenedor cargado con %d elementos\n", contenedor.getSize());
-/*
+
         try{
             threadsCargadores[0].join();
         } catch (InterruptedException e){
             e.printStackTrace();
-        }*/
+        }
 
         ImagenIluminador[] iluminadores = new ImagenIluminador[3];
         Thread[] threadIluminadores = new Thread[3];
@@ -41,20 +41,12 @@ public class Main {
 
         System.out.printf("Se iluminaron completamente %d imagenes\n", contenedor.getIluminacionMejorada());
 
-/*
-        ImagenTamanio xd = new ImagenTamanio(contenedor,0);
-        Thread xd1 = new Thread(xd);
-        xd1.start();
-*/
-
-
-
 
         ImagenTamanio[] redimensionadores = new ImagenTamanio[3];
         Thread[] threadRedimensionadores = new Thread[3];
 
         for(int i = 0; i<3; i++){
-            redimensionadores[i] = new ImagenTamanio(contenedor, i);
+            redimensionadores[i] = new ImagenTamanio(contenedor);
             threadRedimensionadores[i] = new Thread(redimensionadores[i]);
             threadRedimensionadores[i].start();
         }
