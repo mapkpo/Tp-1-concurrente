@@ -5,17 +5,19 @@ class Contenedor {
     private ArrayList<Imagen> imagenes;
     private int iluminacionMejorada;
     private int redimensionadas;
+    public boolean cargando = false;
 
-    public Contenedor(){ //constructor generico
+    //constructor generico
+    public Contenedor(){
         imagenes =  new ArrayList<>();
         iluminacionMejorada = 0;
         redimensionadas = 0;
     }
 
      public void add(Imagen imagen) {
-             imagenes.add(imagen);
-             //return true;
-         //return false;
+        //sizeLock.writeLock().lock();
+        imagenes.add(imagen);
+        //sizeLock.writeLock().unlock();
      }
 
      public Imagen getImagen(int indice) {
@@ -52,8 +54,11 @@ class Contenedor {
          return redimensionadas;
      }
 
-     public int getSize() {
-         return imagenes.size();
+     public synchronized int getSize() {
+         //sizeLock.readLock().lock();
+         int value = imagenes.size();
+         //sizeLock.readLock().unlock();
+         return value;
      }
 
      public void setIluminacionMejorada(int iluminacionMejorada) { //deprecado
