@@ -14,7 +14,6 @@ public class ImagenIluminador implements Runnable {
 
     @Override
     public void run() {
-        System.out.printf("se inicializo el iluminador: " + numerohilo + "\n");
         while (cantidadIluminadas < contenedor.getSize()) {
             // Obtener un objeto Imagen al azar del contenedor
             Imagen imagen;

@@ -3,12 +3,14 @@ import java.util.concurrent.TimeUnit;
 
 public class ImagenTamanio implements Runnable {
     private Contenedor contenedor;
-    private int mejorasHechas;
-    //private int numerohilo;
+    private int mejorasHechas=0;
+    private Random random;
+    private int numerohilo;
 
-    public ImagenTamanio(Contenedor contenedor) {
-        mejorasHechas = 0;
+    public ImagenTamanio(Contenedor contenedor, int hilo) {
+        this.mejorasHechas = 0;
         this.contenedor = contenedor;
+        this.numerohilo = hilo;
     }
 
     @Override
@@ -29,6 +31,10 @@ public class ImagenTamanio implements Runnable {
         }
         System.out.printf("se redimensionaron " + mejorasHechas + "\n");
 
+    }
+
+    public int imagenes_redimensionadas(){
+        return mejorasHechas;
     }
 }
 

@@ -20,17 +20,15 @@ public class ImagenCargador implements Runnable{
 
         while (true){
             /*Primero chequeo que no supere la cantidad a agregar, LUEGO intento agregar*/
-            synchronized (contenedor){
-                if(contenedor.getSize() >= toAdd)
-                    break;
-                System.out.println(contenedor.getSize());
-                contenedor.add(new Imagen());
-            }
+            if(contenedor.getSize() == toAdd){
+                break;}
+
+            contenedor.add(new Imagen());
 
             contador++;
 
             try{
-                TimeUnit.MILLISECONDS.sleep(50);
+                TimeUnit.MILLISECONDS.sleep(5);
             } catch(InterruptedException e){
                 e.printStackTrace();
             }

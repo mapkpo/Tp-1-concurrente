@@ -1,18 +1,19 @@
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
 
 class Contenedor {
-    private ArrayList<Imagen> imagenes;
+     private ArrayList<Imagen> imagenes;
     private int iluminacionMejorada;
     private int redimensionadas;
 
     public Contenedor(){ //constructor generico
-        imagenes =  new ArrayList<>();
+        imagenes =  new ArrayList<>();;
         iluminacionMejorada = 0;
         redimensionadas = 0;
     }
 
-     public void add(Imagen imagen) {
+     public synchronized void add(Imagen imagen) {
              imagenes.add(imagen);
              //return true;
          //return false;
@@ -52,7 +53,7 @@ class Contenedor {
          return redimensionadas;
      }
 
-     public int getSize() {
+     public synchronized int getSize() {
          return imagenes.size();
      }
 
