@@ -1,0 +1,4 @@
+Imagenes insertadas:100
+Imagenes iluminadas: 96
+Imagenes redimensionadas: 94
+Imagenes finalizadas: 0

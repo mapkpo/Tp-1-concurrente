@@ -14,7 +14,10 @@ public class ImagenIluminador implements Runnable {
 
     @Override
     public void run() {
-        while (cantidadIluminadas < contenedor.getSize()) {
+
+        System.out.printf("%s inicializado\n", Thread.currentThread().getName());
+        while (cantidadIluminadas < contenedor.getSize() || contenedor.cargando) {
+
             // Obtener un objeto Imagen al azar del contenedor
             Imagen imagen;
             imagen = contenedor.getImagenRandom();
@@ -30,7 +33,8 @@ public class ImagenIluminador implements Runnable {
             }
             //System.out.printf("Se ilumino una imagen " + imagen.isIluminacionMejoradaBy(numerohilo));
         }
-        System.out.println("Se iluminaron: " + cantidadIluminadas + " imagenes, por el hilo: " + numerohilo + "\n");
+        //System.out.println("Se iluminaron: " + cantidadIluminadas + " imagenes, por el hilo: " + numerohilo);
+        System.out.printf("%s: Ilumino %d imagenes\n", Thread.currentThread().getName(), cantidadIluminadas);
     }
 
     public int getCantidadIluminadas() {

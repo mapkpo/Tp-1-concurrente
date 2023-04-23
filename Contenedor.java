@@ -3,20 +3,25 @@ import java.util.ArrayList;
 import java.util.Random;
 
 class Contenedor {
-     private ArrayList<Imagen> imagenes;
+    private ArrayList<Imagen> imagenes;
     private int iluminacionMejorada;
     private int redimensionadas;
+    public boolean cargando = false;
 
-    public Contenedor(){ //constructor generico
-        imagenes =  new ArrayList<>();;
-        iluminacionMejorada = 0;
-        redimensionadas = 0;
+
+    //constructor generico
+    public Contenedor(){
+        this.imagenes =  new ArrayList<>();
+        this.iluminacionMejorada = 0;
+        this.redimensionadas = 0;
     }
 
-     public synchronized void add(Imagen imagen) {
-             imagenes.add(imagen);
-             //return true;
-         //return false;
+
+     public void add(Imagen imagen) {
+        //sizeLock.writeLock().lock();
+        imagenes.add(imagen);
+        //sizeLock.writeLock().unlock();
+
      }
 
      public Imagen getImagen(int indice) {
@@ -54,7 +59,12 @@ class Contenedor {
      }
 
      public synchronized int getSize() {
-         return imagenes.size();
+
+         //sizeLock.readLock().lock();
+         int value = imagenes.size();
+         //sizeLock.readLock().unlock();
+         return value;
+
      }
 
      public void setIluminacionMejorada(int iluminacionMejorada) { //deprecado

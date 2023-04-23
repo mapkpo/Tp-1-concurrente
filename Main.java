@@ -46,9 +46,12 @@ public class Main {
         //Se iluminan las imagenes
         for(int i = 0; i<3; i++){
             threadIluminadores[i] = new Thread(iluminadores[i]);
+            threadIluminadores[i].setName("ILUMINADOR " + i);
             threadIluminadores[i].start();
         }
 
+
+/*
         //Espera que se iluminen todas las imagenes por cada uno de los hilos
         try{
             threadIluminadores[0].join();
@@ -56,7 +59,8 @@ public class Main {
             threadIluminadores[2].join();
         } catch (InterruptedException e){
             e.printStackTrace();
-        }
+        }*/
+
 
         System.out.printf("Se iluminaron completamente %d imagenes\n", contenedor_inicial.getIluminacionMejorada());
 
@@ -67,11 +71,14 @@ public class Main {
 */
 
 
+        //System.out.printf("Se iluminaron completamente %d imagenes\n", contenedor.getIluminacionMejorada());
+
 
 
 
         for(int i = 0; i<3; i++){
             threadRedimensionadores[i] = new Thread(redimensionadores[i]);
+            threadRedimensionadores[i].setName("REDIMENCIONADOR " + i);
             threadRedimensionadores[i].start();
         }
 

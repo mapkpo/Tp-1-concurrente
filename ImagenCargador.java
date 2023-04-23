@@ -16,14 +16,20 @@ public class ImagenCargador implements Runnable{
      */
     @Override
     public void run() {
+        System.out.printf("%s inicializado\n", Thread.currentThread().getName());
+        contenedor.cargando = true;
         int contador = 0;
 
         while (true){
             /*Primero chequeo que no supere la cantidad a agregar, LUEGO intento agregar*/
-            if(contenedor.getSize() == toAdd){
-                break;}
 
-            contenedor.add(new Imagen());
+            synchronized (contenedor){
+                if(contenedor.getSize() >= toAdd)
+                    break;
+                //System.out.println(contenedor.getSize());
+                contenedor.add(new Imagen());
+            }
+
 
             contador++;
 
@@ -33,7 +39,7 @@ public class ImagenCargador implements Runnable{
                 e.printStackTrace();
             }
         }
-
         System.out.printf("%s: Cargo %d imagenes\n", Thread.currentThread().getName(), contador);
+        contenedor.cargando = false;
     }
 }
