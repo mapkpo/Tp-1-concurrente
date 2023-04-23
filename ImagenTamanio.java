@@ -16,7 +16,7 @@ public class ImagenTamanio implements Runnable {
     @Override
     public void run() {
         System.out.printf("%s inicializado\n", Thread.currentThread().getName());
-        while (contenedor.getRedimensionadas() < contenedor.getSize() || contenedor.cargando) {
+        while (contenedor.getRedimensionadas() < contenedor.getSize() || contenedor.isCargando()) {
             Imagen imagen = contenedor.getImagenRandom();                          // Obtener un objeto Imagen al azar del contenedor
 
             if (!imagen.isRedimensionada() && imagen.isIluminadaMejorada()) {

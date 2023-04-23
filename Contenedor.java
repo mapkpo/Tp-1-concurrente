@@ -6,8 +6,17 @@ class Contenedor {
     private ArrayList<Imagen> imagenes;
     private int iluminacionMejorada;
     private int redimensionadas;
-    public boolean cargando = false;
 
+    private boolean cargando = false;
+
+
+    public boolean isCargando() {
+        return cargando;
+    }
+
+    public void setCargando(boolean cargando) {
+        this.cargando = cargando;
+    }
 
     //constructor generico
     public Contenedor(){

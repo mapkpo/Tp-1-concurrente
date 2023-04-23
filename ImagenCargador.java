@@ -17,7 +17,7 @@ public class ImagenCargador implements Runnable{
     @Override
     public void run() {
         System.out.printf("%s inicializado\n", Thread.currentThread().getName());
-        contenedor.cargando = true;
+        contenedor.setCargando(true);
         int contador = 0;
 
         while (true){
@@ -40,6 +40,6 @@ public class ImagenCargador implements Runnable{
             }
         }
         System.out.printf("%s: Cargo %d imagenes\n", Thread.currentThread().getName(), contador);
-        contenedor.cargando = false;
+        contenedor.setCargando(false);
     }
 }

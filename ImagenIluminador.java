@@ -16,7 +16,7 @@ public class ImagenIluminador implements Runnable {
     public void run() {
 
         System.out.printf("%s inicializado\n", Thread.currentThread().getName());
-        while (cantidadIluminadas < contenedor.getSize() || contenedor.cargando) {
+        while (cantidadIluminadas < contenedor.getSize() || contenedor.isCargando()) {
 
             // Obtener un objeto Imagen al azar del contenedor
             Imagen imagen;
