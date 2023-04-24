@@ -12,8 +12,6 @@ class Contenedor {
     private boolean cargando = false;
 
 
-
-
     //constructor generico
     public Contenedor( int imagenes_totales){
         this.imagenes_totales = imagenes_totales;
@@ -25,13 +23,8 @@ class Contenedor {
 
 
      public synchronized void add(Imagen imagen) {
-
-        //sizeLock.writeLock().lock();
         imagenes.add(imagen);
-
         setAgregadas();
-
-        //sizeLock.writeLock().unlock();
      }
 
      public synchronized Imagen getImagenRandom(){
@@ -64,19 +57,12 @@ class Contenedor {
      }
 
      public synchronized int getSize() {
-
          int value = imagenes.size();
          return value;
-
      }
-
 
      public synchronized void incrementIluminacionMejorada() {
          iluminacionMejorada ++;
-     }
-
-     public synchronized void incrementarRedimensionadas() { //deprecado
-         redimensionadas++;
      }
 
     public synchronized int getAgregadas() {
@@ -104,5 +90,4 @@ class Contenedor {
     public synchronized void incrementarImagenesCargadas() {
         imagenesCargadas ++;
     }
-
 }
