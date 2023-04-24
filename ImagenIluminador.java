@@ -26,6 +26,7 @@ public class ImagenIluminador implements Runnable {
                 cantidadIluminadas++;
                 //System.out.printf("Se ilumino una imagen %b \n", imagen.isIluminacionMejoradaBy(numerohilo));
             }
+            imagen.liberar();
             try{
                 TimeUnit.MILLISECONDS.sleep(5);
             } catch(InterruptedException e){

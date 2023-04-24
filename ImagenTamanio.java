@@ -24,6 +24,7 @@ public class ImagenTamanio implements Runnable {
                 mejorasHechas++;
                 //System.out.printf("Se redimensiono una imagen");
             }
+            imagen.liberar();
             try{
                 TimeUnit.MILLISECONDS.sleep(5);
             } catch(InterruptedException e){

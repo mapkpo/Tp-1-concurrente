@@ -2,6 +2,8 @@ public class Imagen {
     private boolean[] iluminada;
     private boolean tamanioajustado;
 
+    private boolean ocupada = false;
+
     public Imagen(){ //constructor de la clase imagen
         iluminada = new boolean[]{false,false,false};
         tamanioajustado = false;
@@ -43,5 +45,15 @@ public class Imagen {
 
     public boolean isRedimensionada() {
         return tamanioajustado;
+    }
+
+    public synchronized boolean useImagen(){
+        if(ocupada) return false;
+        ocupada = true;
+        return true;
+    }
+
+    public synchronized void liberar(){
+        ocupada = false;
     }
 }

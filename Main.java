@@ -64,7 +64,13 @@ public class Main {
             threadRedimensionadores[i].start();
         }
 
-
+        try{
+            threadRedimensionadores[0].join();
+            threadRedimensionadores[1].join();
+            threadRedimensionadores[2].join();
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
 
         for(int i = 0; i < 2; i++){
             threadMovedores[i] = new Thread(movedores[i]);

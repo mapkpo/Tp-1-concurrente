@@ -9,6 +9,8 @@ class Contenedor {
 
     private boolean cargando = false;
 
+    private Object listLock = new Object();
+
 
     public boolean isCargando() {
         return cargando;
@@ -26,11 +28,10 @@ class Contenedor {
     }
 
 
-     public void add(Imagen imagen) {
+     public synchronized void add(Imagen imagen) {
         //sizeLock.writeLock().lock();
         imagenes.add(imagen);
         //sizeLock.writeLock().unlock();
-
      }
 
      public Imagen getImagen(int indice) { //deprecado
@@ -42,12 +43,24 @@ class Contenedor {
 
      public synchronized Imagen getImagenRandom(){
          Random random = new Random();
-         return imagenes.get(random.nextInt(getSize()));
+         Imagen aux;
+         while (true) {
+             aux = imagenes.get(random.nextInt(getSize()));
+             if (aux.useImagen()) break;
+         }
+         return aux;
      }
 
      public synchronized void remove(Imagen imagen){
         imagenes.remove(imagen);
      }
+    public synchronized Imagen removeRandom(){
+
+        Random random = new Random();
+        Imagen aux = imagenes.get(random.nextInt(getSize()));
+        imagenes.remove(aux);
+        return aux;
+    }
 
      public synchronized int getIluminacionMejorada() {
          int contador = 0;
