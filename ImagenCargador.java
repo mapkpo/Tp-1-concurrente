@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class ImagenCargador implements Runnable{
@@ -23,7 +24,8 @@ public class ImagenCargador implements Runnable{
             contenedor.incrementarImagenesCargadas();
 
             try{
-                TimeUnit.MILLISECONDS.sleep(5);
+                Random r = new Random();
+                TimeUnit.MILLISECONDS.sleep(10 +r.nextInt(15));
             } catch(InterruptedException e){
                 e.printStackTrace();
             }

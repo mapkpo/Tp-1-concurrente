@@ -35,7 +35,7 @@ public class ImagenIluminador implements Runnable {
             }
             try {
                 Random r = new Random();
-                TimeUnit.MILLISECONDS.sleep(5 +r.nextInt(5));
+                TimeUnit.MILLISECONDS.sleep(30 +r.nextInt(20));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

@@ -28,7 +28,7 @@ public class ImagenTamanio implements Runnable {
             }
             try {
                 Random r = new Random();
-                TimeUnit.MILLISECONDS.sleep(5 + r.nextInt(5));
+                TimeUnit.MILLISECONDS.sleep(25 + r.nextInt(10));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
