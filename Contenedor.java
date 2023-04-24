@@ -65,7 +65,7 @@ class Contenedor {
          iluminacionMejorada ++;
      }
     
-    public synchronized void incrementarRedimensionadas() { //deprecado
+    public synchronized void incrementarRedimensionadas() {
          redimensionadas++;
      }
 
