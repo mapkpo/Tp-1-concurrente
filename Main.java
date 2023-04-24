@@ -35,7 +35,7 @@ public class Main {
             redimensionadores[i] = new ImagenTamanio(contenedor_inicial, i);
         }
 
-        Log log = new Log(contenedor_inicial, contenedor_final,iluminadores,redimensionadores );
+        //Log log = new Log(contenedor_inicial, contenedor_final,iluminadores,redimensionadores );
 
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -43,7 +43,7 @@ public class Main {
 
         //Arranco los distintos hilos segun corresponda
 
-        new Thread(log).start();
+        //new Thread(log).start();
 
         for(int i = 0; i < 2; i++){
 
