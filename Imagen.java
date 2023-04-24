@@ -26,7 +26,8 @@ public class Imagen {
         }
     }
 
-    public boolean isIluminadaMejorada() { //chequea si toda la imagen fue mejorada y que el array sea "all true"
+    //chequea si toda la imagen fue mejorada y que el array sea "all true"
+    public boolean isIluminadaMejorada() {
         for (boolean b : iluminada) {
             if (!b) {
                 return false;

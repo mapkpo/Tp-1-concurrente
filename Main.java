@@ -1,9 +1,12 @@
 public class Main {
-    public static void main(String[] args) {
 
-        //Va a contener las imagenes desde la creacion y mientras se esten procesando
-        Contenedor contenedor_inicial = new Contenedor();
-        Contenedor contenedor_final = new Contenedor();
+    public static void main(String[] args) {
+        final int cantidadImagenes = 100;
+
+
+        //Va a contener las imagenes desde la creacion y mientras se estén procesando
+        Contenedor contenedor_inicial = new Contenedor(cantidadImagenes);
+        Contenedor contenedor_final = new Contenedor(cantidadImagenes);
 
         //Creo los arreglos para almacenar los objetos necesarios
 
@@ -64,13 +67,6 @@ public class Main {
             threadRedimensionadores[i].start();
         }
 
-        /*try{
-            threadRedimensionadores[0].join();
-            threadRedimensionadores[1].join();
-            threadRedimensionadores[2].join();
-        } catch (InterruptedException e){
-            e.printStackTrace();
-        }*/
 
         for(int i = 0; i < 2; i++){
             threadMovedores[i] = new Thread(movedores[i]);

@@ -32,7 +32,7 @@ public class Log implements Runnable {
 
     @Override
     public void run() {
-        while (cont_inicial.getRedimensionadas()<100){
+        while (cont_final.getSize()<100){
             try {
                 this.contador++;
                 crear_archivo(contador);
@@ -59,7 +59,7 @@ public class Log implements Runnable {
             File archivo = new File("Logs/log"+numero+".txt");
             FileWriter escribir = new FileWriter(archivo, true);
             try {
-                escribir.write("Imagenes insertadas:" + cont_inicial.getSize()+"\n");
+                escribir.write("Imagenes insertadas:" + cont_inicial.getAgregadas()+"\n");
                 escribir.write("Imagenes iluminadas: "+ cont_inicial.getIluminacionMejorada()+"\n");
                 escribir.write("Imagenes redimensionadas: "+ cont_inicial.getRedimensionadas()+"\n");
                 escribir.write("Imagenes finalizadas: "+ cont_final.getSize()+"\n");

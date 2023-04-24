@@ -2,13 +2,12 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class ImagenTamanio implements Runnable {
-    private Contenedor contenedor;
-    private int mejorasHechas=0;
-    private Random random;
-    private int numerohilo;
+    private final Contenedor contenedor;
+    private int imagenesRedimensionadas;
+    private final int numerohilo;
 
     public ImagenTamanio(Contenedor contenedor, int hilo) {
-        this.mejorasHechas = 0;
+        this.imagenesRedimensionadas = 0;
         this.contenedor = contenedor;
         this.numerohilo = hilo;
     }
@@ -16,31 +15,39 @@ public class ImagenTamanio implements Runnable {
     @Override
     public void run() {
         System.out.printf("%s inicializado\n", Thread.currentThread().getName());
-        while (contenedor.getRedimensionadas() < contenedor.getSize() || contenedor.isCargando()) {
-            if(contenedor.getSize() > 0) {
+        while (contenedor.getRedimensionadas() < contenedor.getImagenes_totales() || contenedor.isCargando()) {
+            if (contenedor.getSize() > 0) {
                 Imagen imagen = contenedor.getImagenRandom();                          // Obtener un objeto Imagen al azar del contenedor
+
 
                 if (!imagen.isRedimensionada() && imagen.isIluminadaMejorada()) {
                     imagen.redimensionar();                                     //redimesiona la imagen
-                    mejorasHechas++;
-                    //System.out.printf("Se redimensiono una imagen");
+                    imagenesRedimensionadas++;
+                    contenedor.incrementarRedimensionadas();
                 }
                 imagen.liberar();
-            }
+                try {
+                    TimeUnit.MILLISECONDS.sleep(5);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 try {
                     Random r = new Random();
                     TimeUnit.MILLISECONDS.sleep(r.nextInt(5));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+            }
+            //System.out.printf("se redimensionaron " + mejorasHechas + "\n");
+            //System.out.printf("%s: redimenciono %d imagenes\n", Thread.currentThread().getName(), getImagenesRedimensionadas());
+
         }
-        //System.out.printf("se redimensionaron " + mejorasHechas + "\n");
-        System.out.printf("%s: redimenciono %d imagenes\n", Thread.currentThread().getName(), mejorasHechas);
+
 
     }
 
-    public int imagenes_redimensionadas(){
-        return mejorasHechas;
+    public int getImagenesRedimensionadas() {
+        return imagenesRedimensionadas;
     }
+
 }
-

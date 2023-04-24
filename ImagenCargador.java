@@ -17,11 +17,12 @@ public class ImagenCargador implements Runnable{
         contenedor.setCargando(true);
         int contador = 0;
 
-        while (contador < toAdd){
+        while (contenedor.getImagenesCargadas() < contenedor.getImagenes_totales()){
             /*Primero chequeo que no supere la cantidad a agregar, LUEGO intento agregar*/
 
             contenedor.add(new Imagen());
             contador++;
+            contenedor.incrementarImagenesCargadas();
 
             try{
                 TimeUnit.MILLISECONDS.sleep(5);

@@ -6,30 +6,37 @@ class Contenedor {
     private ArrayList<Imagen> imagenes;
     private int iluminacionMejorada;
     private int redimensionadas;
+    private int agregadas;
+
+
+
+    private int imagenesCargadas;
+
+
+    private int imagenes_totales;
+
     private boolean cargando = false;
 
-    private int totalSize = 0;
 
-    public boolean isCargando() {
-        return cargando;
-    }
 
-    public void setCargando(boolean cargando) {
-        this.cargando = cargando;
-    }
 
     //constructor generico
-    public Contenedor(){
+    public Contenedor( int imagenes_totales){
+        this.imagenes_totales = imagenes_totales;
         this.imagenes =  new ArrayList<>();
         this.iluminacionMejorada = 0;
         this.redimensionadas = 0;
+        this.agregadas = 0;
     }
 
 
      public synchronized void add(Imagen imagen) {
+
         //sizeLock.writeLock().lock();
         imagenes.add(imagen);
-        totalSize++;
+
+        setAgregadas();
+
         //sizeLock.writeLock().unlock();
      }
 
@@ -62,45 +69,53 @@ class Contenedor {
     }
 
      public synchronized int getIluminacionMejorada() {
-         int contador = 0;
-         for (Imagen i: imagenes) {
-             if(i.isIluminadaMejorada()){
-                 contador++;
-             }
-         }
-         iluminacionMejorada = contador;
          return iluminacionMejorada;
      }
 
      public synchronized int getRedimensionadas() {
-         int contador1 = 0;
-         for (Imagen i: imagenes) {
-             if(i.isRedimensionada()){
-                 contador1++;
-             }
-         }
-         redimensionadas = contador1;
          return redimensionadas;
      }
 
      public synchronized int getSize() {
 
-         //sizeLock.readLock().lock();
          int value = imagenes.size();
-         //sizeLock.readLock().unlock();
          return value;
 
      }
 
-     public synchronized int getTotalSize(){
-        return totalSize;
+
+     public synchronized void incrementIluminacionMejorada() {
+         iluminacionMejorada ++;
      }
 
-     public void setIluminacionMejorada(int iluminacionMejorada) { //deprecado
-         this.iluminacionMejorada = iluminacionMejorada;
-     }
-
-     public synchronized void setRedimensionadas() { //deprecado
+     public synchronized void incrementarRedimensionadas() { //deprecado
          redimensionadas++;
      }
- }
+
+    public synchronized int getAgregadas() {
+        return agregadas;
+    }
+
+    public synchronized void setAgregadas() {
+        this.agregadas ++;
+    }
+    public synchronized boolean isCargando() {
+        return cargando;
+    }
+
+    public synchronized void setCargando(boolean cargando) {
+        this.cargando = cargando;
+    }
+
+    public synchronized int getImagenes_totales() {
+        return imagenes_totales;
+    }
+    public synchronized int getImagenesCargadas() {
+        return imagenesCargadas;
+    }
+
+    public synchronized void incrementarImagenesCargadas() {
+        imagenesCargadas ++;
+    }
+
+}
