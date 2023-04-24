@@ -17,19 +17,22 @@ public class ImagenTamanio implements Runnable {
     public void run() {
         System.out.printf("%s inicializado\n", Thread.currentThread().getName());
         while (contenedor.getRedimensionadas() < contenedor.getSize() || contenedor.isCargando()) {
-            Imagen imagen = contenedor.getImagenRandom();                          // Obtener un objeto Imagen al azar del contenedor
+            if(contenedor.getSize() > 0) {
+                Imagen imagen = contenedor.getImagenRandom();                          // Obtener un objeto Imagen al azar del contenedor
 
-            if (!imagen.isRedimensionada() && imagen.isIluminadaMejorada()) {
-                imagen.redimensionar();                                     //redimesiona la imagen
-                mejorasHechas++;
-                //System.out.printf("Se redimensiono una imagen");
+                if (!imagen.isRedimensionada() && imagen.isIluminadaMejorada()) {
+                    imagen.redimensionar();                                     //redimesiona la imagen
+                    mejorasHechas++;
+                    //System.out.printf("Se redimensiono una imagen");
+                }
+                imagen.liberar();
             }
-            imagen.liberar();
-            try{
-                TimeUnit.MILLISECONDS.sleep(5);
-            } catch(InterruptedException e){
-                e.printStackTrace();
-            }
+                try {
+                    Random r = new Random();
+                    TimeUnit.MILLISECONDS.sleep(r.nextInt(5));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
         }
         //System.out.printf("se redimensionaron " + mejorasHechas + "\n");
         System.out.printf("%s: redimenciono %d imagenes\n", Thread.currentThread().getName(), mejorasHechas);
