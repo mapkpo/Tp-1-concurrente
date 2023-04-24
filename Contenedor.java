@@ -64,6 +64,10 @@ class Contenedor {
      public synchronized void incrementIluminacionMejorada() {
          iluminacionMejorada ++;
      }
+    
+    public synchronized void incrementarRedimensionadas() { //deprecado
+         redimensionadas++;
+     }
 
     public synchronized int getAgregadas() {
         return agregadas;
