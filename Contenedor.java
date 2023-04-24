@@ -7,14 +7,8 @@ class Contenedor {
     private int iluminacionMejorada;
     private int redimensionadas;
     private int agregadas;
-
-
-
     private int imagenesCargadas;
-
-
     private int imagenes_totales;
-
     private boolean cargando = false;
 
 

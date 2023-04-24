@@ -40,7 +40,7 @@ public class ImagenMovedor implements Runnable{
             }
                 try {
                     Random r = new Random();
-                    TimeUnit.MILLISECONDS.sleep(r.nextInt(5));
+                    TimeUnit.MILLISECONDS.sleep(5 +r.nextInt(5));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
