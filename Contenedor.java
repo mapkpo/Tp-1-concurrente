@@ -34,13 +34,6 @@ class Contenedor {
         //sizeLock.writeLock().unlock();
      }
 
-     public Imagen getImagen(int indice) { //deprecado
-         if (indice < 0 || indice >= getSize()) {
-             throw new ArrayIndexOutOfBoundsException("El índice está fuera del rango de la lista.");
-         }
-         return imagenes.get(indice);
-     }
-
      public synchronized Imagen getImagenRandom(){
          Random random = new Random();
          Imagen aux;
