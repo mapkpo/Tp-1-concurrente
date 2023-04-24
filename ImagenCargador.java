@@ -3,11 +3,9 @@ import java.util.concurrent.TimeUnit;
 public class ImagenCargador implements Runnable{
 
     private Contenedor contenedor;
-    private int toAdd;
 
-    public ImagenCargador(Contenedor contenedor, int toAdd) {
+    public ImagenCargador(Contenedor contenedor) {
         this.contenedor = contenedor;
-        this.toAdd = toAdd;
     }
 
 

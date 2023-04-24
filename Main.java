@@ -29,13 +29,25 @@ public class Main {
         //Inicializo los objetos necesarios
 
         for(int i = 0; i < 2; i++){
-            cargadores[i] = new ImagenCargador(contenedor_inicial, cantidadImagenes/2);
+
+            cargadores[i] = new ImagenCargador(contenedor_inicial);
+            threadsCargadores[i] = new Thread(cargadores[i]);
+            threadsCargadores[i].setName("CARGADOR " + i);
+
             movedores[i] = new ImagenMovedor(contenedor_inicial,contenedor_final);
+            threadMovedores[i] = new Thread(movedores[i]);
+            threadMovedores[i].setName("MOVEDOR " + i);
+
         }
 
         for(int i = 0; i < 3; i++){
             iluminadores[i] = new ImagenIluminador(contenedor_inicial, i);
+            threadIluminadores[i] = new Thread(iluminadores[i]);
+            threadIluminadores[i].setName("ILUMINADOR " + i);
+
             redimensionadores[i] = new ImagenTamanio(contenedor_inicial, i);
+            threadRedimensionadores[i] = new Thread(redimensionadores[i]);
+            threadRedimensionadores[i].setName("REDIMENCIONADOR " + i);
         }
 
         Log log = new Log(contenedor_inicial, contenedor_final,iluminadores,redimensionadores );
@@ -49,28 +61,17 @@ public class Main {
         new Thread(log).start();
 
         for(int i = 0; i < 2; i++){
-
-            threadsCargadores[i] = new Thread(cargadores[i]);
-            threadsCargadores[i].setName("CARGADOR " + i);
             threadsCargadores[i].start();
-
             System.out.printf("Contenedor %d inicializado\n", i);
         }
 
         for(int i = 0; i<3; i++){
-            threadIluminadores[i] = new Thread(iluminadores[i]);
-            threadIluminadores[i].setName("ILUMINADOR " + i);
             threadIluminadores[i].start();
-
-            threadRedimensionadores[i] = new Thread(redimensionadores[i]);
-            threadRedimensionadores[i].setName("REDIMENCIONADOR " + i);
             threadRedimensionadores[i].start();
         }
 
 
         for(int i = 0; i < 2; i++){
-            threadMovedores[i] = new Thread(movedores[i]);
-            threadMovedores[i].setName("MOVEDOR " + i);
             threadMovedores[i].start();
         }
 
