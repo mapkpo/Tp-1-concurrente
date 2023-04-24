@@ -16,15 +16,10 @@ public class ImagenMovedor implements Runnable{
     @Override
     public void run() {
         System.out.printf("%s inicializado\n", Thread.currentThread().getName());
-        /*while(inicial.getSize() > 0){
-            Imagen imagen = inicial.removeRandom();
-        }*/
+
         while (inicial.getSize() > 0 || inicial.isCargando()){
             if(inicial.getSize() > 0) {
-
                 Imagen imagen = inicial.getImagenRandom();
-                //System.out.printf(" " + imagen.isRedimensionada() + "\n");
-
                 if (imagen.isRedimensionada()) {
                     _final.add(imagen);
                     imagenesMovidas++;
@@ -34,8 +29,6 @@ public class ImagenMovedor implements Runnable{
                         inicial.remove(imagen);
                     }
                 }
-
-                //System.out.println(imagenesMovidas);
                 imagen.liberar();
             }
                 try {
@@ -46,6 +39,5 @@ public class ImagenMovedor implements Runnable{
                 }
         }
         System.out.printf("%s: Se movieron %d imagenes\n", Thread.currentThread().getName(), imagenesMovidas);
-
     }
 }
