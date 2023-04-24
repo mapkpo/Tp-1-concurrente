@@ -1,16 +1,15 @@
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
 
 class Contenedor {
-    private ArrayList<Imagen> imagenes;
+    private final ArrayList<Imagen> imagenes;
     private int iluminacionMejorada;
     private int redimensionadas;
     private int agregadas;
-    private int imagenesCargadas;
-    private int imagenes_totales;
+    private final int imagenes_totales;
     private boolean cargando = false;
 
+    private final Object AgregadasLock, RedimencionadasLock, IluminadasLock, ListLock;
 
     //constructor generico
     public Contenedor( int imagenes_totales){
@@ -19,58 +18,78 @@ class Contenedor {
         this.iluminacionMejorada = 0;
         this.redimensionadas = 0;
         this.agregadas = 0;
+        AgregadasLock = new Object();
+        RedimencionadasLock = new Object();
+        IluminadasLock = new Object();
+        ListLock = new Object();
     }
 
 
-     public synchronized void add(Imagen imagen) {
-        imagenes.add(imagen);
+     public void add(Imagen imagen) {
+        synchronized (ListLock) {
+            imagenes.add(imagen);
+        }
         setAgregadas();
      }
 
-     public synchronized Imagen getImagenRandom(){
+     public Imagen getImagenRandom(){
          Random random = new Random();
          Imagen aux;
-         while (true) {
-             aux = imagenes.get(random.nextInt(getSize()));
-             if (aux.useImagen()) break;
+         synchronized (ListLock) {
+             while (true) {
+                 aux = imagenes.get(random.nextInt(getSize()));
+                 if (aux.useImagen()) break;
+             }
          }
          return aux;
      }
 
      public synchronized void remove(Imagen imagen){
-        imagenes.remove(imagen);
+        synchronized (ListLock) {
+            imagenes.remove(imagen);
+        }
      }
-    public synchronized Imagen removeRandom(){
 
-        Random random = new Random();
-        Imagen aux = imagenes.get(random.nextInt(getSize()));
-        imagenes.remove(aux);
-        return aux;
+     public int getIluminacionMejorada() {
+         synchronized (IluminadasLock) {
+             return iluminacionMejorada;
+         }
+     }
+
+     public int getRedimensionadas() {
+         synchronized (RedimencionadasLock) {
+             return redimensionadas;
+         }
+     }
+
+    public void incrementarRedimensionadas() {
+        synchronized (RedimencionadasLock) {
+            redimensionadas++;
+        }
     }
 
-     public synchronized int getIluminacionMejorada() {
-         return iluminacionMejorada;
+     public int getSize() {
+        synchronized (ListLock) {
+            return imagenes.size();
+        }
      }
 
-     public synchronized int getRedimensionadas() {
-         return redimensionadas;
+     public void incrementIluminacionMejorada() {
+        synchronized (IluminadasLock) {
+            iluminacionMejorada++;
+        }
      }
 
-     public synchronized int getSize() {
-         int value = imagenes.size();
-         return value;
-     }
-
-     public synchronized void incrementIluminacionMejorada() {
-         iluminacionMejorada ++;
-     }
-
-    public synchronized int getAgregadas() {
-        return agregadas;
+    public int getAgregadas() {
+        synchronized (AgregadasLock) {
+            return agregadas;
+        }
     }
 
-    public synchronized void setAgregadas() {
-        this.agregadas ++;
+    public void setAgregadas() {
+        synchronized (AgregadasLock) {
+            this.agregadas++;
+        }
     }
     public synchronized boolean isCargando() {
         return cargando;
@@ -80,14 +99,7 @@ class Contenedor {
         this.cargando = cargando;
     }
 
-    public synchronized int getImagenes_totales() {
+    public int getImagenes_totales() {
         return imagenes_totales;
-    }
-    public synchronized int getImagenesCargadas() {
-        return imagenesCargadas;
-    }
-
-    public synchronized void incrementarImagenesCargadas() {
-        imagenesCargadas ++;
     }
 }
