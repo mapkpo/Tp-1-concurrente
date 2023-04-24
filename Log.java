@@ -3,6 +3,7 @@ import java.io.FileWriter;
 
 public class Log implements Runnable {
     int contador= 0;
+    int prueba;
     Contenedor cont_inicial;
     Contenedor cont_final;
     ImagenIluminador[] iluminadores;
