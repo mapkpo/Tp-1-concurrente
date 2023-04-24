@@ -29,7 +29,7 @@ public class Main {
         //Inicializo los objetos necesarios
 
         for(int i = 0; i < 2; i++){
-            cargadores[i] = new ImagenCargador(contenedor_inicial, 50);
+            cargadores[i] = new ImagenCargador(contenedor_inicial, cantidadImagenes/2);
             movedores[i] = new ImagenMovedor(contenedor_inicial,contenedor_final);
         }
 
