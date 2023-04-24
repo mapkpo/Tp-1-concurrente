@@ -25,7 +25,6 @@ public class ImagenIluminador implements Runnable {
                 if (!imagen.isIluminacionMejoradaBy(numerohilo)) {
                     imagen.iluminar(numerohilo); //ilumina la imagen
                     cantidadIluminadas++;
-                    //System.out.printf("Se ilumino una imagen %b \n", imagen.isIluminacionMejoradaBy(numerohilo));
                     if (imagen.isIluminadaMejorada()) {
                         contenedor.incrementIluminacionMejorada();
                     }
@@ -38,10 +37,8 @@ public class ImagenIluminador implements Runnable {
                 TimeUnit.MILLISECONDS.sleep(30 +r.nextInt(20));
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }
-            //System.out.printf("Se ilumino una imagen " + imagen.isIluminacionMejoradaBy(numerohilo));
+            }    
         }
-        //System.out.println("Se iluminaron: " + cantidadIluminadas + "imagenes, por el hilo: " + numerohilo);
         System.out.printf("%s: Ilumino %d imagenes\n", Thread.currentThread().getName(), cantidadIluminadas);
     }
 
