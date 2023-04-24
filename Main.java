@@ -29,7 +29,6 @@ public class Main {
         //Inicializo los objetos necesarios
 
         for(int i = 0; i < 2; i++){
-
             cargadores[i] = new ImagenCargador(contenedor_inicial);
             threadsCargadores[i] = new Thread(cargadores[i]);
             threadsCargadores[i].setName("CARGADOR " + i);
@@ -50,14 +49,13 @@ public class Main {
             threadRedimensionadores[i].setName("REDIMENCIONADOR " + i);
         }
 
-        Log log = new Log(contenedor_inicial, contenedor_final,iluminadores,redimensionadores );
 
 
 //----------------------------------------------------------------------------------------------------------------------
 
 
         //Arranco los distintos hilos segun corresponda
-
+        Log log = new Log(contenedor_inicial, contenedor_final,threadsCargadores,threadIluminadores,threadRedimensionadores,threadMovedores );
         new Thread(log).start();
 
         for(int i = 0; i < 2; i++){
@@ -70,21 +68,9 @@ public class Main {
             threadRedimensionadores[i].start();
         }
 
-
         for(int i = 0; i < 2; i++){
             threadMovedores[i].start();
         }
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-        //System.out.printf("Contenedor cargado con %d elementos\n", contenedor_inicial.getSize());
-        //System.out.printf("Se iluminaron completamente %d imagenes\n", contenedor_inicial.getIluminacionMejorada());
-        //System.out.printf("Se redimensionaron completamente %d imagenes\n", contenedor_inicial.getRedimensionadas());
-
-
-
-
 
 
     }
