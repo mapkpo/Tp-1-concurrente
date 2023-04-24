@@ -10,10 +10,7 @@ public class ImagenCargador implements Runnable{
         this.toAdd = toAdd;
     }
 
-    /**
-     * carga imagenes en el contenedor siempre que este tenga menos imagenes que las deseadas (toAdd)
-        *  o hasta que el contenedor este lleno
-     */
+
     @Override
     public void run() {
         System.out.printf("%s inicializado\n", Thread.currentThread().getName());

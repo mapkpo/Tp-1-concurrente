@@ -33,7 +33,7 @@ class Contenedor {
 
      }
 
-     public Imagen getImagen(int indice) {
+     public Imagen getImagen(int indice) { //deprecado
          if (indice < 0 || indice >= getSize()) {
              throw new ArrayIndexOutOfBoundsException("El índice está fuera del rango de la lista.");
          }
@@ -43,6 +43,10 @@ class Contenedor {
      public synchronized Imagen getImagenRandom(){
          Random random = new Random();
          return imagenes.get(random.nextInt(getSize()));
+     }
+
+     public synchronized void remove(Imagen imagen){
+        imagenes.remove(imagen);
      }
 
      public synchronized int getIluminacionMejorada() {
