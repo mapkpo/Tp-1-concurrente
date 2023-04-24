@@ -6,11 +6,9 @@ class Contenedor {
     private ArrayList<Imagen> imagenes;
     private int iluminacionMejorada;
     private int redimensionadas;
-
     private boolean cargando = false;
 
-    private Object listLock = new Object();
-
+    private int totalSize = 0;
 
     public boolean isCargando() {
         return cargando;
@@ -31,6 +29,7 @@ class Contenedor {
      public synchronized void add(Imagen imagen) {
         //sizeLock.writeLock().lock();
         imagenes.add(imagen);
+        totalSize++;
         //sizeLock.writeLock().unlock();
      }
 
@@ -93,11 +92,15 @@ class Contenedor {
 
      }
 
+     public synchronized int getTotalSize(){
+        return totalSize;
+     }
+
      public void setIluminacionMejorada(int iluminacionMejorada) { //deprecado
          this.iluminacionMejorada = iluminacionMejorada;
      }
 
-     public void setRedimensionadas() { //deprecado
+     public synchronized void setRedimensionadas() { //deprecado
          redimensionadas++;
      }
  }

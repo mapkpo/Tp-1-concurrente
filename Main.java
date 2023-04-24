@@ -26,8 +26,8 @@ public class Main {
         //Inicializo los objetos necesarios
 
         for(int i = 0; i < 2; i++){
-            cargadores[i] = new ImagenCargador(contenedor_inicial, 100);
-            movedores[i] = new ImagenMovedor(contenedor_inicial,contenedor_final,100);
+            cargadores[i] = new ImagenCargador(contenedor_inicial, 50);
+            movedores[i] = new ImagenMovedor(contenedor_inicial,contenedor_final);
         }
 
         for(int i = 0; i < 3; i++){
@@ -64,13 +64,13 @@ public class Main {
             threadRedimensionadores[i].start();
         }
 
-        try{
+        /*try{
             threadRedimensionadores[0].join();
             threadRedimensionadores[1].join();
             threadRedimensionadores[2].join();
         } catch (InterruptedException e){
             e.printStackTrace();
-        }
+        }*/
 
         for(int i = 0; i < 2; i++){
             threadMovedores[i] = new Thread(movedores[i]);
