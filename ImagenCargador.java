@@ -23,8 +23,7 @@ public class ImagenCargador implements Runnable{
             contador++;
 
             try{
-                Random r = new Random();
-                TimeUnit.MILLISECONDS.sleep(10 +r.nextInt(15));
+                TimeUnit.MILLISECONDS.sleep(50);
             } catch(InterruptedException e){
                 e.printStackTrace();
             }
