@@ -41,8 +41,4 @@ public class ImagenIluminador implements Runnable {
         }
         System.out.printf("%s: Ilumino %d imagenes\n", Thread.currentThread().getName(), cantidadIluminadas);
     }
-
-    public int getCantidadIluminadas() {
-        return cantidadIluminadas;
-    }
 }
