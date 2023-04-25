@@ -44,7 +44,7 @@ class Contenedor {
          return aux;
      }
 
-     public synchronized void remove(Imagen imagen){
+     public void remove(Imagen imagen){
         synchronized (ListLock) {
             imagenes.remove(imagen);
         }
