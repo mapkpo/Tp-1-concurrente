@@ -4,12 +4,12 @@ import java.util.concurrent.TimeUnit;
 public class ImagenTamanio implements Runnable {
     private final Contenedor contenedor;
     private int imagenesRedimensionadas;
-    private final int numerohilo;
 
-    public ImagenTamanio(Contenedor contenedor, int hilo) {
+
+    public ImagenTamanio(Contenedor contenedor) {
         this.imagenesRedimensionadas = 0;
         this.contenedor = contenedor;
-        this.numerohilo = hilo;
+
     }
 
     @Override

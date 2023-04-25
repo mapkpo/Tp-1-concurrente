@@ -57,6 +57,7 @@ public class Log implements Runnable {
                 throw new RuntimeException(e);
             }
         }
+        this.contador++;
         escribir_archivo();
     }
 

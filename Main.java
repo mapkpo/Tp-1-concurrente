@@ -44,7 +44,7 @@ public class Main {
             threadIluminadores[i] = new Thread(iluminadores[i]);
             threadIluminadores[i].setName("ILUMINADOR " + i);
 
-            redimensionadores[i] = new ImagenTamanio(contenedor_inicial, i);
+            redimensionadores[i] = new ImagenTamanio(contenedor_inicial);
             threadRedimensionadores[i] = new Thread(redimensionadores[i]);
             threadRedimensionadores[i].setName("REDIMENCIONADOR " + i);
         }
