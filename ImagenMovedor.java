@@ -24,10 +24,6 @@ public class ImagenMovedor implements Runnable{
                     _final.add(imagen);
                     imagenesMovidas++;
                     inicial.remove(imagen);
-
-                    if (inicial.getSize() > 0) {
-                        inicial.remove(imagen);
-                    }
                 }
                 imagen.liberar();
             }
